@@ -2,11 +2,11 @@
   <the-header></the-header>
   <router-view v-slot="slotProps">
     <transition name="route" mode="out-in">
-      <component :is="slotProps.Component" class="component"></component>
+      <component :is="slotProps.Component" class="component" id="component"></component>
     </transition>
   </router-view>
   <teleport to="#app">
-    <chat-popup v-if="isChatPopupOpen"></chat-popup>
+    <chat-popup></chat-popup>
   </teleport>
 </template>
 
@@ -18,11 +18,6 @@ export default {
   components: {
     TheHeader,
     ChatPopup
-  },
-  computed: {
-    isChatPopupOpen() {
-      return this.$store.getters['chatPopup/getIsChatOpen']
-    }
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="home-page">
     <promo-section></promo-section>
   </main>
 </template>
@@ -11,3 +11,5 @@ export default {
   components: { PromoSection }
 }
 </script>
+
+<style scoped></style>

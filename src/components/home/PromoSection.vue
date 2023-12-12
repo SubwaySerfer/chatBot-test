@@ -6,7 +6,7 @@
 
 <style scoped>
 .home-promo {
-  height: 50rem;
+  height: 100%;
   background: #f9f1e7;
   width: 100%;
 }
