@@ -5,13 +5,25 @@
       <component :is="slotProps.Component" class="component"></component>
     </transition>
   </router-view>
+  <teleport to="#app">
+    <chat-popup v-if="isChatPopupOpen"></chat-popup>
+  </teleport>
 </template>
 
 <script>
 import TheHeader from './components/layout/TheHeader.vue';
+import ChatPopup from './components/layout/ChatPopup.vue'
 
 export default {
-  components: { TheHeader }
+  components: {
+    TheHeader,
+    ChatPopup
+  },
+  computed: {
+    isChatPopupOpen() {
+      return this.$store.getters['chatPopup/getIsChatOpen']
+    }
+  }
 }
 
 

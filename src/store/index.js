@@ -1,5 +1,11 @@
 import { createStore } from "vuex"
 
-const store = createStore({})
+import chatPopupModule from './modules/chatPopup'
+
+const store = createStore({
+  modules: {
+    chatPopup: chatPopupModule
+  }
+})
 
 export default store

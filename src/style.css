@@ -22,7 +22,7 @@ html {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: start center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -63,7 +63,9 @@ button:focus-visible {
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 1440px;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1440px;
 }
 
