@@ -68,8 +68,12 @@ button:focus-visible {
   flex: 1;
   width: 100%;
   max-width: 1440px;
+  box-shadow: 2px 5px 10px 1px rgba(143, 135, 143, 1);
 }
 
 main{
   flex: 1;
+}
+figure{
+  margin: 0;
 }

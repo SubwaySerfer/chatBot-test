@@ -12,7 +12,7 @@
 
 <script>
 import TheHeader from './components/layout/TheHeader.vue';
-import ChatPopup from './components/layout/ChatPopup.vue'
+import ChatPopup from './components/chatBot/ChatPopup.vue'
 
 export default {
   components: {
