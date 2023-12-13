@@ -13,11 +13,11 @@
             <figure class="icon__background" :class="`icon__background__${chat.id}`">
               <img :src="`/public/assets/icons/${chat.id}-icon.svg`" alt="user avatar." class="message__icon">
             </figure>
-            <p class="message__text">{{ chat.text }}</p>
+            <p class="message__text" @input="userText">{{ chat.text }}</p>
           </div>
           <ul class="message__opinion-block" v-if="chat.opinions" :class="{ 'padding-top': chat.opinions.length > 0 }">
             <li class="opinion-block" v-for="opinion in chat.opinions">
-              <h6 class="opinion-block__label">{{ opinion }}</h6>
+              <h6 class="opinion-block__label" @click="addMessage(opinion)">{{ opinion }}</h6>
             </li>
           </ul>
         </li>
@@ -51,7 +51,7 @@
 export default {
   data() {
     return {
-
+      botTextData: []
     }
   },
   created() {
@@ -66,30 +66,43 @@ export default {
       if (value == '') {
         return
       }
+
       if (currentOpinions) {
         this.$store.commit('chatPopup/addMessageToData', ({ 'id': user, 'text': value, 'opinions': currentOpinions }))
       } else {
         this.$store.commit('chatPopup/addMessageToData', ({ 'id': user, 'text': value }))
       }
-      this.textValue = ''
+
+      let check = this.botTextData.map(el => el.textName.includes(value))
+      if (check.includes(true) && user == 'user2') {
+        let currentText = this.botTextData[check.indexOf(true)]
+        this.createBotAnswer(currentText.text, currentText.opinions)
+      }
+
       this.scrollChat()
-      console.log(value, user)
+    },
+    createBotAnswer(text, callOptions) {
+      setTimeout(() => {
+        this.addMessage(text, 'bot', callOptions)
+      }, 100)
     },
     scrollChat() {
       const chatContent = document.getElementById('chat-content');
-      if (chatContent) {
-        chatContent.scrollTop = chatContent.scrollHeight;
-        console.log(chatContent, 'scroll  ')
-      }
+
+      setTimeout(() => {
+        if (chatContent) {
+          chatContent.scrollTop = chatContent.scrollHeight;
+          console.log(chatContent.scrollHeight, chatContent.scrollTop)
+        }
+      }, 200)
+
       //TODO: сделать прокрутку
     },
     startDialog() {
-      let elem = this.botData.botText[0]
-      console.log(elem.id)
+      this.botTextData = this.botData.botText
 
-      this.addMessage(elem.text, elem.id, elem.opinions)
+      this.addMessage(this.botTextData[0].text, this.botTextData[0].id, this.botTextData[0].opinions)
     }
-    // addCssStyle() { console.log('k') }
   },
   computed: {
     isChatPopupOpen() {
@@ -101,7 +114,7 @@ export default {
     botData() {
       return this.$store.getters['chatPopup/getBotData']
     }
-  }
+  },
 }
 </script>
 
@@ -113,7 +126,6 @@ export default {
   position: fixed;
   right: 10vw;
   bottom: 10vh;
-  /* place-items: end center; */
 }
 
 .chat-modal__close {
