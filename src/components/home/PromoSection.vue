@@ -1,6 +1,5 @@
 <template>
   <section class="home-promo">
-    Hello
   </section>
 </template>
 

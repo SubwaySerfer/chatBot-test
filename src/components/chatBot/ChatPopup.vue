@@ -5,7 +5,6 @@
     </div>
 
     <div class="chat-modal" v-else>
-      <!-- <div class="chat-modal__content"> -->
       <ul class="chat-modal__content" id="chat-content">
         <li v-for="chat in   chatData  " class="content__message ">
           <div class="message__block"
@@ -21,20 +20,7 @@
             </li>
           </ul>
         </li>
-        <!-- <li class="content__message content__message__user-1">
-          <figure class="icon__background icon__background__robot">
-            <img src="/public/assets/icons/robot-icon.svg" alt="bot avatar." class="message__icon">
-          </figure>
-          <p class="message__text">test</p>
-        </li>
-        <li class="content__message content__message__user-2">
-          <figure class="icon__background icon__background__user">
-            <img src="/public/assets/icons/user-icon.svg" alt="user avatar." class="message__icon">
-          </figure>
-          <p class="message__text">test2</p>
-        </li> -->
       </ul>
-      <!-- </div> -->
 
       <div class="chat-modal__text-field">
         <textarea v-model="textValue" name="message" id="message" cols="30" rows="10" class="text-field__textarea"
@@ -80,6 +66,7 @@ export default {
       }
 
       this.scrollChat()
+      this.textValue = ''
     },
     createBotAnswer(text, callOptions) {
       setTimeout(() => {
@@ -127,6 +114,7 @@ export default {
   right: 10vw;
   bottom: 10vh;
 }
+
 
 .chat-modal__close {
   width: 10rem;
@@ -194,6 +182,7 @@ export default {
   border-radius: 1rem;
   cursor: pointer;
   flex: 1;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px
 }
 
 .opinion-block__label {
@@ -209,11 +198,13 @@ export default {
 
 .message__icon {
   width: 24px;
+
 }
 
 .icon__background {
   background-color: aliceblue;
   width: 40px;
+  min-width: 40px;
   height: 40px;
   display: flex;
   place-content: center center;
@@ -221,7 +212,8 @@ export default {
 }
 
 .icon__background__bot {
-  background-color: deepskyblue
+  background-color: deepskyblue;
+  padding-right: 1px;
 }
 
 .icon__background__user2 {
@@ -234,6 +226,7 @@ export default {
   padding: .5rem 1rem;
   display: flex;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px
 }
 
 .chat-modal__text-field {
