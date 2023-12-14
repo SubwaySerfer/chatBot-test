@@ -79,7 +79,6 @@ export default {
       setTimeout(() => {
         if (chatContent) {
           chatContent.scrollTop = chatContent.scrollHeight;
-          console.log(chatContent.scrollHeight, chatContent.scrollTop)
         }
       }, 200)
 
@@ -252,5 +251,15 @@ export default {
   padding: 1rem 2.5rem 1rem 1rem;
   border: none;
   border-radius: 1rem;
+}
+
+@media screen and (max-width: 450px) {
+  .chat-modal {
+    width: 100%;
+  }
+
+  .chat-wrapper {
+    right: 0;
+  }
 }
 </style>
