@@ -10,7 +10,7 @@
           <div class="message__block"
             :class="{ 'content__message__user-2': chat.id == 'user2', 'content__message__user-1': chat.id == 'bot' }">
             <figure class="icon__background" :class="`icon__background__${chat.id}`">
-              <img :src="`/public/assets/icons/${chat.id}-icon.svg`" alt="user avatar." class="message__icon">
+              <img :src="`/assets/icons/${chat.id}-icon.svg`" alt="user avatar." class="message__icon">
             </figure>
             <p class="message__text" @input="userText">{{ chat.text }}</p>
           </div>
@@ -26,7 +26,7 @@
         <textarea v-model="textValue" name="message" id="message" cols="30" rows="10" class="text-field__textarea"
           @keydown.enter="addMessage(textValue)" @keydown.enter.prevent>
         </textarea>
-        <img @click="addMessage(textValue)" src="/public/assets/icons/enter-icon.svg" alt="enter message button."
+        <img @click="addMessage(textValue)" src="/assets/icons/enter-icon.svg" alt="enter message button."
           class="text-field__icon">
       </div>
     </div>
