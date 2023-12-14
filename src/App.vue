@@ -1,30 +1,82 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <the-header></the-header>
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component" class="component" id="component"></component>
+    </transition>
+  </router-view>
+  <teleport to="#app">
+    <chat-popup></chat-popup>
+  </teleport>
 </template>
 
+<script>
+import TheHeader from './components/layout/TheHeader.vue';
+import ChatPopup from './components/chatBot/ChatPopup.vue'
+
+export default {
+  components: {
+    TheHeader,
+    ChatPopup
+  },
+}
+
+
+</script>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<style>
+html {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  color: #000;
+}
+
+body,
+ul {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.component {
+  min-height: 50rem;
 }
 </style>
